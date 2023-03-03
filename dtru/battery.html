@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Circular Battery Meter</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><link rel='stylesheet' href='https://fonts.googleapis.com/css2?family=DM+Sans&amp;display=swap'><link rel="stylesheet" href="./stayle.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<main>
+	<svg class="battery" viewBox="0 0 100 100" width="100px" height="100px">
+		<!-- basic fill -->
+		<g fill="none" transform="rotate(-75,50,50)">
+			<circle r="40" cx="50" cy="50" stroke="hsla(223,10%,50%,0.2)" stroke-width="20" stroke-dasharray="251.33 251.33" stroke-dashoffset="20.944" />
+			<circle class="battery__fill1" r="40" cx="50" cy="50" stroke="hsl(123,90%,45%)" stroke-width="20" stroke-dasharray="251.33 251.33" stroke-dashoffset="20.944" />
+		</g>
+		<!-- top and bottom metal parts -->
+		<g fill="none" transform="translate(50,50) rotate(15)">
+			<g transform="translate(-6,-45)">
+				<rect fill="hsl(223,10%,90%)" width="3" height="10" />
+				<rect fill="hsl(223,10%,100%)" y="2" width="3" height="2" />
+				<rect fill="hsl(223,10%,70%)" y="7" width="3" height="3" />
+			</g>
+			<g transform="translate(-3,-50)">
+				<rect fill="hsl(223,10%,90%)" width="3" height="20" />
+				<rect fill="hsl(223,10%,100%)" y="4" width="3" height="4" />
+				<rect fill="hsl(223,10%,70%)" y="16" width="3" height="4" />
+			</g>
+			<g class="battery__bottom" transform="rotate(330) translate(0,-50)">
+				<rect fill="hsl(223,10%,90%)" width="3" height="20" />
+				<rect fill="hsl(223,10%,100%)" y="4" width="3" height="4" />
+				<rect fill="hsl(223,10%,70%)" y="16" width="3" height="4" />
+			</g>
+		</g>
+		<!-- plus and minus -->
+		<g stroke="hsl(0,0%,0%)" stroke-width="2" stroke-linecap="round" transform="translate(50,50) rotate(15)">
+			<g class="battery__plus" transform="translate(0,-44)">
+				<g transform="rotate(10,0,50)">
+					<polyline points="-3,4 3,4" />
+					<polyline points="0,1 0,7" />
+				</g>
+			</g>
+			<g class="battery__minus" transform="rotate(330) translate(0,-44)">
+				<g transform="rotate(-10,0,50)">
+					<polyline points="0,1 0,7" />
+				</g>
+			</g>
+		</g>
+		<!-- fill effects -->
+		<g fill="none" transform="rotate(-75,50,50)">
+			<circle class="battery__fill2" r="32" cx="50" cy="50" stroke="hsla(0,0%,20%,0.2)" stroke-width="4" stroke-dasharray="201.062 201.062" stroke-dashoffset="16.755" />
+			<circle class="battery__fill3" r="44" cx="50" cy="50" stroke="hsla(0,0%,100%,0.3)" stroke-width="4" stroke-dasharray="276.46 276.46" stroke-dashoffset="23.038" />
+		</g>
+		<text class="battery__value" font-size="16" fill="currentColor" x="50" y="56" text-anchor="middle" data-value>100%</text>
+	</svg>
+	<form onsubmit="return false">
+		<label for="health">Dru HappY?</label>
+		<div>
+			<input id="health" name="health" type="number" value="100" min="0" max="100" step="1">%
+		</div>
+	</form>
+</main>
+<!-- partial -->
+  <script  src="./skript.js"></script>
+
+</body>
+</html>

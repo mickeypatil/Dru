@@ -1,0 +1,116 @@
+* {
+	border: 0;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+:root {
+	--hue: 223;
+	--bg: hsl(var(--hue),90%,90%);
+	--fg: hsl(var(--hue),90%,10%);
+	--primary: hsl(var(--hue),90%,50%);
+	--trans-dur: 0.3s;
+	font-size: calc(16px + (32 - 16) * (100vw - 320px) / (2560 - 320));
+}
+body,
+input {
+	color: var(--fg);
+	font: 1em/1.5 "DM Sans", sans-serif;
+}
+body {
+	background-color: var(--bg);
+	display: flex;
+	height: 100vh;
+	transition:
+		background-color var(--trans-dur),
+		color var(--trans-dur);
+}
+main {
+	margin: auto;
+	padding: 1.5em 0;
+}
+form {
+	margin: auto;
+	width: 5.5em;
+}
+label {
+	display: block;
+	width: 100%;
+}
+input {
+	background-color: hsl(0,0%,100%);
+	border-radius: 0.25em;
+	box-shadow: 0 0 0 2px hsl(var(--hue),90%,80%) inset;
+	outline: transparent;
+	margin-right: 0.25em;
+	padding: 0.25em 0.5em;
+	width: 4.25em;
+	transition:
+		background-color var(--trans-dur),
+		box-shadow 0.15s ease-in-out,
+		color var(--trans-dur);
+	-webkit-appearance: none;
+	appearance: none;
+}
+input:focus-visible {
+	box-shadow: 0 0 0 2px hsl(var(--hue),90%,50%) inset;
+}
+.battery {
+	--percent: 1;
+	display: block;
+	margin: 0 auto 1.5em auto;
+	width: 10em;
+	height: 10em;
+}
+.battery__bottom {
+	transform: rotate(calc(330deg * var(--percent))) translate(0,-50px);
+	transition: transform var(--trans-dur) ease-in-out;
+}
+.battery__fill1,
+.battery__fill2,
+.battery__fill3 {
+	transition:
+		stroke var(--trans-dur) ease-in-out,
+		stroke-dashoffset var(--trans-dur) ease-in-out;
+}
+.battery__fill1 {
+	/* 30° + 330° * (1 - percent) */
+	stroke-dashoffset: calc(20.944px + 230.383px * (1 - var(--percent)));
+}
+.battery__fill2 {
+	stroke-dashoffset: calc(16.755px + 184.307px * (1 - var(--percent)));
+}
+.battery__fill3 {
+	stroke-dashoffset: calc(23.038px + 253.422px * (1 - var(--percent)));
+}
+.battery__plus,
+.battery__minus {
+	transition:
+		opacity var(--trans-dur) ease-in-out,
+		transform var(--trans-dur) ease-in-out;
+}
+.battery__minus {
+	transform: rotate(calc(330deg * var(--percent))) translate(0,-44px);
+}
+.battery--low .battery__fill1 {
+	stroke: hsl(58,90%,45%);
+}
+.battery--critical .battery__fill1 {
+	stroke: hsl(3,90%,45%);
+}
+.battery--hide-symbols .battery__plus,
+.battery--hide-symbols .battery__minus {
+	opacity: 0;
+}
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+	:root {
+		--bg: hsl(var(--hue),90%,10%);
+		--fg: hsl(var(--hue),90%,90%);
+	}
+	input {
+		background-color: hsl(var(--hue),90%,30%);
+		box-shadow: 0 0 0 2px hsl(var(--hue),90%,20%) inset;
+	}
+}
